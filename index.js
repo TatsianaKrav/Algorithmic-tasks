@@ -624,3 +624,32 @@ console.log(minMax([2334454, 5]));
 console.log(minMax([1]));
 
 
+//27. deepClone
+
+const country = {
+
+    name: "Германия",
+    language: "немецкий",
+    capital: {
+
+        name: "Берлин",
+        population: 3375000,
+        year: 1237,
+    }
+};
+
+function deepClone(obj) {
+    const copyObj = {};
+
+    for (const key in obj) {
+        if (obj[key] === 'object') {
+            obj = deepClone(obj[key]);
+        } else {
+            copyObj[key] = obj[key];
+        }
+    }
+
+    return copyObj;
+}
+
+console.log(deepClone(country));
