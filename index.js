@@ -653,3 +653,47 @@ function deepClone(obj) {
 }
 
 console.log(deepClone(country));
+
+//find all occurrences
+
+const string = 'ivisibility';
+
+function findAllOccurrences(string, char) {
+    const obj = {};
+    let count = 0;
+
+    string.split('').forEach(el => {
+        if (el === char) {
+            obj[el] = ++count;
+        }
+    })
+
+    return obj[char];
+}
+
+console.log(findAllOccurrences(string, 'i'));
+
+function repeatingSymbols2(string) {
+    let count = 0;
+    let arr = string.split('').map(item => item.toLowerCase());
+    const usedNums = { count: 0 };
+
+    for (item of arr) {
+        if (usedNums[item]) continue;
+
+        if (arr.indexOf(item) !== arr.lastIndexOf(item)) {
+            usedNums.count = ++count;
+            usedNums[item] = item;
+        }
+    }
+
+    return usedNums.count;
+}
+
+console.log(repeatingSymbols2("abcde"));
+console.log(repeatingSymbols2("aabbcde"));
+console.log(repeatingSymbols2("aabBcde"));
+console.log(repeatingSymbols2("indivisibility"));
+console.log(repeatingSymbols2("Indivisibilities"));
+console.log(repeatingSymbols2("aA11"));
+console.log(repeatingSymbols2("ABBA"));
