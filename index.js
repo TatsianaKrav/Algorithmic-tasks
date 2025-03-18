@@ -697,3 +697,40 @@ console.log(repeatingSymbols2("indivisibility"));
 console.log(repeatingSymbols2("Indivisibilities"));
 console.log(repeatingSymbols2("aA11"));
 console.log(repeatingSymbols2("ABBA"));
+
+
+
+function arrayDiff2(arr1, arr2) {
+    const arr = arr1.concat(arr2); // 1, 3, 3, 4, 1, 3,'4' 
+    const first = Object.fromEntries(arr1.map((el, index) => [el, el])); //1, 3, 3, 4
+    const second = Object.fromEntries(arr2.map((el, index) => [el, el])); //1, 3,'4' 
+    const map = new Map();
+
+    arr.forEach((item) => {
+        if (first[item] !== item && second[item] === item || first[item] === item && second[item] !== item) {
+            map.set(item, item);
+        }
+    })
+
+    return Array.from(map.values());
+
+}
+
+console.log(arrayDiff2([1, 2, 3], [1, 2, 4]));  //-> [3, 4]
+console.log(arrayDiff2([1, 3, 3, 4], [1, 3, '4'])); //-> [4, '4'] 
+
+
+//9. 
+const object = {
+    id: 0,
+    name: 'Obj-name',
+
+    [Symbol.toPrimitive](hint) {
+        return hint == "string" ? this.name : this.id;
+    }
+};
+
+console.log(`Name: ${object}`); 		// Name: Obj-name
+console.log(+object);            		// 0
+console.log(object + 10);        		// 10 */
+
