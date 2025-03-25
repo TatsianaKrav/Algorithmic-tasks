@@ -844,3 +844,25 @@ function countFiles(obj) {
 
 const result = countFiles(fileStructure);
 console.log(result);
+
+Promise.customAll = function (iterable) {
+    return new Promise((resolve, reject) => {
+        const arr = [];
+
+        iterable.forEach((item, index) => {
+            item.then((response) => {
+                arr[index] = response;
+
+                if (arr.length === iterable.length) {
+                    resolve(arr);
+                }
+            })
+        });
+    })
+}
+
+Promise.customAll([
+    new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1
+    new Promise(resolve => setTimeout(() => resolve(2), 2000)), // 2
+    new Promise(resolve => setTimeout(() => resolve(3), 1000))  // 3
+]).then((result) => console.log(result));
