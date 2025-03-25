@@ -866,3 +866,16 @@ Promise.customAll([
     new Promise(resolve => setTimeout(() => resolve(2), 2000)), // 2
     new Promise(resolve => setTimeout(() => resolve(3), 1000))  // 3
 ]).then((result) => console.log(result));
+
+
+Array.prototype.customMap = function (cb) {
+    const arr = [];
+
+    this.forEach((item, index) => {
+        arr.push(cb(item, index, this));
+    })
+
+    return arr;
+}
+
+console.log([1, 2, 3, 4].customMap((el) => el * 2));
