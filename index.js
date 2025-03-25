@@ -767,3 +767,44 @@ obj2.bar(); // 30
 obj2.baz(); // 20 
 
 
+const array = [1, 5, -8, 12, 18];
+
+function find(arr, sum) {
+    let start = 0;
+    let next = 1;
+    const newArr = [];
+
+    while (start !== arr.length - 1) {
+        if (arr[start] + arr[next] === sum) return [arr[start], arr[next]];
+
+        if (next === arr.length - 1) {
+            start++;
+            next = start + 1;
+        } else {
+            next++;
+        }
+    }
+}
+
+
+console.log(find(array, 4)); // [-8, 12]
+
+array.sort((a, b) => a - b);
+
+function find2(arr, sum) {
+    let start = 0;
+    let end = arr.length - 1;
+
+    while (start < end) {
+        if (arr[start] + arr[end] === sum) return [arr[start], arr[end]];
+
+        if (arr[start] + arr[end] > sum) {
+            end--;
+        } else {
+            start++;
+        }
+    }
+}
+
+
+console.log(find2(array, 30));
