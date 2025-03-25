@@ -879,3 +879,19 @@ Array.prototype.customMap = function (cb) {
 }
 
 console.log([1, 2, 3, 4].customMap((el) => el * 2));
+
+Array.prototype.customFilter = function (cb) {
+    const arr = [];
+
+    this.forEach((item, index) => {
+        const result = (cb(item, index, this))
+
+        if (result) {
+            arr.push(item);
+        }
+    })
+
+    return arr;
+}
+
+console.log([2, 3, 4, 5, 6].customFilter((el) => el % 2 === 0));
