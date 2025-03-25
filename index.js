@@ -808,3 +808,39 @@ function find2(arr, sum) {
 
 
 console.log(find2(array, 30));
+
+const fileStructure = {
+    folder1: {
+        file1: 'content',
+        folder2: {
+            file2: 'content',
+            file3: 'content',
+            folder3: {
+                file4: 'content',
+                file5: 'content',
+            }
+        }
+    },
+    folder4: {
+        file6: 'content',
+        file7: 'content',
+    },
+    file8: 'content',
+};
+
+function countFiles(obj) {
+    let result = 0;
+
+    for (const key in obj) {
+        if (typeof obj[key] === 'object') {
+            result += countFiles(obj[key]);
+        } else {
+            result++;
+        }
+    }
+
+    return result;
+}
+
+const result = countFiles(fileStructure);
+console.log(result);
