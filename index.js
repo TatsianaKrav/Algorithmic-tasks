@@ -895,3 +895,17 @@ Array.prototype.customFilter = function (cb) {
 }
 
 console.log([2, 3, 4, 5, 6].customFilter((el) => el % 2 === 0));
+
+Array.prototype.customReduce = function (cb, initValue) {
+
+    let acc = arguments.length >= 2 ? initValue : this[0];
+    let start = arguments.length >= 2 ? 0 : 1;
+
+    for (let i = start; i < this.length; i++) {
+        acc = cb(acc, this[i], i, this);
+    }
+
+    return acc;
+}
+
+console.log([1, 2, 3, 4].customReduce((acc, value) => acc * value));
