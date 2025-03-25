@@ -654,6 +654,20 @@ function deepClone(obj) {
 
 console.log(deepClone(country));
 
+function deepCloneRecursion(obj) {
+    return Object.keys(obj).reduce((acc, key) => {
+        if (typeof obj[key] === 'object') {
+            acc[key] = deepCloneRecursion(obj[key]);
+        } else {
+            acc[key] = obj[key];
+        }
+
+        return acc;
+    }, {})
+}
+
+console.log(deepCloneRecursion(country));
+
 //find all occurrences
 
 const string = 'ivisibility';
